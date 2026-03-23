@@ -1,0 +1,25 @@
+{
+  "article": {
+    "id": 1,
+    "title": "The Evolution of Frontend Architectures",
+    "content": "From static HTML pages to complex micro-frontends, the web has changed drastically..."
+  },
+  "comments": [
+    {
+      "id": 1,
+      "text": "Great article! Really helped me understand SSR."
+    },
+    {
+      "id": 2,
+      "text": "I still prefer SPAs for internal dashboards."
+    },
+    {
+      "id": 1774156686225,
+      "text": "jk"
+    },
+    {
+      "id": 1774156690754,
+      "text": "jkjnkkn"
+    }
+  ]
+}
