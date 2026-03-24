@@ -1,11 +1,17 @@
 name: Deploy React SPA to AWS S3
 
+
 # 1. Trigger the workflow
 on:
   push:
     branches:
       - master  # Or 'main' depending on your default branch name
-
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Why are you running this?'
+        required: false
+        default: 'Manual test'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
