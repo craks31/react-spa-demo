@@ -4,7 +4,7 @@ export default function CommentList({ comments }) {
   return (
     <section>
       <h3 className="comments-header">
-        Live Discussions
+        Live Discussions **
         <span className="comments-badge">{comments.length}</span>
       </h3>
       <ul className="comments-list">
