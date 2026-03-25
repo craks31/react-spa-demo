@@ -14,7 +14,22 @@ export function useContent() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    setIsLoading(true);
+    async function getArticles() {
+      const { data, error } = await supabase.from("articles").select();
+      if (error) throw error; // Throw error so Promise.all can catch it
+      
+      // Supabase returns an array. Since App.jsx expects a single article object (article.title),
+      // we take the first item from the array.
+      setArticle(data && data.length > 0 ? data[0] : null);
+    }
+
+    async function getComments() {
+      const { data, error } = await supabase.from("comments").select();
+      if (error) throw error;
+      
+      setComments(data || []);
+    }
+
 
     // Promise.all lets us run both asynchronous functions concurrently
     Promise.all([
@@ -30,22 +45,6 @@ export function useContent() {
         setIsLoading(false);
       });
   }, []);
-
-  const getArticles = async () => {
-    const { data, error } = await supabase.from("articles").select();
-    if (error) throw error; // Throw error so Promise.all can catch it
-    
-    // Supabase returns an array. Since App.jsx expects a single article object (article.title),
-    // we take the first item from the array.
-    setArticle(data && data.length > 0 ? data[0] : null);
-  }
-
-  const getComments = async () => {
-    const { data, error } = await supabase.from("comments").select();
-    if (error) throw error;
-    
-    setComments(data || []);
-  }
 
   return { article, comments, isLoading, error };
 }
