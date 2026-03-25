@@ -53,3 +53,9 @@ jobs:
       - name: Deploy to AWS S3
         run: |
           aws s3 sync ./dist s3://amzn-spa-react-381155823218-us-east-2-an --delete
+
+      - name: Invalidate CloudFront
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
